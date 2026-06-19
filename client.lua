@@ -210,6 +210,12 @@ end
 local hasCustomPedAccess = false
 
 function ToggleMenu()
+    local ped = PlayerPedId()
+    
+    if IsPedSwimming(ped) or IsPedSwimmingUnderWater(ped) or IsEntityDead(ped) or IsPedInAnyVehicle(ped, true) or IsPedFalling(ped) or IsPedRagdoll(ped) or IsEntityAttached(ped) then
+        return
+    end
+
     if isMenuOpen then
         isMenuOpen = false
         SetNuiFocus(false, false)
